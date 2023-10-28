@@ -2,7 +2,7 @@ package racingcar;
 
 public class Car {
     private final String name;
-    private Integer distances;
+    private int distances;
 
     public Car(String name) {
         this.name = name;
@@ -15,5 +15,13 @@ public class Car {
 
     public void displayRacing() {
         System.out.println(name + " : " + "-".repeat(distances));
+    }
+
+    public int getDistances() {
+        return distances;
+    }
+
+    public String getName(){
+        return name;
     }
 }
