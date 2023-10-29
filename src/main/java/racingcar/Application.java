@@ -46,9 +46,9 @@ public class Application {
     }
 
     private static List<String> preprocessCarNames(String[] carNames) {
-        List<String> CarNameList = removeDuplicates(carNames);
-        CarNameList = limitListSize(CarNameList);
-        return CarNameList;
+        List<String> carNameList = removeDuplicates(carNames);
+        carNameList = limitNameSize(carNameList);
+        return carNameList;
     }
 
 
@@ -58,11 +58,11 @@ public class Application {
                 .toList();
     }
 
-    private static List<String> limitListSize(List<String> CarNameList) {
-        if (CarNameList.size() > 5) {
-            return CarNameList.subList(0, 5);
-        }
-        return CarNameList;
+    private static List<String> limitNameSize(List<String> carNameList) {
+        return carNameList.stream()
+                .filter(carName ->
+                    carName.length() <= 5)
+                .toList();
     }
 
     private static int registerCount() {
