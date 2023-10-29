@@ -71,9 +71,25 @@ public class Application {
         System.out.println("시도할 회수는 몇회인가요?");
         String input = Console.readLine();
 
+        int count = preprocessCount(input);
         System.out.println();
 
-        return Integer.parseInt(input);
+        return count;
+    }
+
+    private static int preprocessCount(String input) {
+        String trimInput = input.trim();
+        return stringToInt(trimInput);
+    }
+
+    private static int stringToInt(String trimInput) {
+        int count;
+        try {
+            count = Integer.parseInt(trimInput);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("숫자가 아닌 값을 횟수에 입력할 수 없습니다.");
+        }
+        return count;
     }
 
 
