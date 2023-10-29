@@ -59,10 +59,12 @@ public class Application {
     }
 
     private static List<String> limitNameSize(List<String> carNameList) {
-        return carNameList.stream()
-                .filter(carName ->
-                    carName.length() <= 5)
-                .toList();
+        for (String carName : carNameList) {
+            if (carName.length() > 5) {
+                throw new IllegalArgumentException("차의 이름은 5자 이하만 가능하다.");
+            }
+        }
+        return carNameList;
     }
 
     private static int registerCount() {
