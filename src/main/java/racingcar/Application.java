@@ -106,7 +106,7 @@ public class Application {
     }
 
     private static List<Car> determineWinner(List<Car> carList) {
-        int topDistance = determineTovDistance(carList);
+        int topDistance = determineTopDistance(carList);
 
         return carList.stream()
                 .filter(car ->
@@ -114,7 +114,7 @@ public class Application {
                 ).toList();
     }
 
-    private static int determineTovDistance(List<Car> carList) {
+    private static int determineTopDistance(List<Car> carList) {
         int topDistance = 0;
         for (Car car : carList) {
             if (topDistance < car.getDistances()) {
