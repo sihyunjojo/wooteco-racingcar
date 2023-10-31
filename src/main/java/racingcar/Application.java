@@ -14,11 +14,9 @@ public class Application {
         playGame(count, carList);
 
         List<Car> winnerCars = determineWinner(carList);
-
         displayWinner(winnerCars);
 
         Console.close();
-
     }
 
     private static List<Car> registerCar() {
@@ -28,7 +26,7 @@ public class Application {
         List<String> CarNameList = preprocessCarNames(carNames);
 
         for (String carName : CarNameList) {
-            carList.add(new Car(carName.trim()));
+            carList.add(new Car(carName));
         }
 
         return carList;
@@ -47,8 +45,15 @@ public class Application {
 
     private static List<String> preprocessCarNames(String[] carNames) {
         List<String> carNameList = removeDuplicates(carNames);
+        carNameList = removeSpace(carNameList);
         carNameList = limitNameSize(carNameList);
         return carNameList;
+    }
+
+    private static List<String> removeSpace(List<String> carNameList) {
+        return carNameList.stream()
+                .map(String::trim)
+                .toList();
     }
 
 
@@ -61,6 +66,7 @@ public class Application {
     private static List<String> limitNameSize(List<String> carNameList) {
         for (String carName : carNameList) {
             if (carName.length() > 5) {
+                Console.close();
                 throw new IllegalArgumentException("차의 이름은 5자 이하만 가능하다.");
             }
         }
@@ -87,7 +93,8 @@ public class Application {
         try {
             count = Integer.parseInt(trimInput);
         } catch (Exception e) {
-            throw new IllegalArgumentException("숫자가 아닌 값을 횟수에 입력할 수 없습니다.");
+            Console.close();
+            throw new IllegalArgumentException("숫자가 아닌 값을 횟수 값으로 입력할 수 없습니다.");
         }
         return count;
     }
